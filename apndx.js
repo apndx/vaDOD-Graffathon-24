@@ -57,7 +57,9 @@ function scrollBg(sceneTime){
 function title(sceneTime) {
   background(img);
   textAlign(CENTER, CENTER);
+  //const bump = sceneTime - Math.floor(sceneTime)
   image(sydan, width / 2, height / 2, sydan.width *0.2, sydan.height *0.2);
+  //image(sydan, width / 2, height / 2, bump, bump);
   size = 64
   textSize(size);
   fill(35, 100, 50);
@@ -65,6 +67,11 @@ function title(sceneTime) {
   let y = height + 100 - sceneTime * 100
   texts = 'Virman bileet goes Avaruus'
   text(texts, width/2, y)
+
+  const bump = sceneTime - Math.floor(sceneTime)
+  // https://p5js.org/reference/#/p5/map
+  const radius = map(bump, 0, 1, 0, 100)
+  ellipse(0, 200, radius, radius)
 }
 
 function intros(sceneTime) {
