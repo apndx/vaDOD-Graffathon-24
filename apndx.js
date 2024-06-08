@@ -5,8 +5,6 @@ function draw() {
     const demoTime = getTime() * bpm / 60
 
     textFont('Press Start 2P')
-    colorMode(HSL) // Hue (0..360), Saturation (0..100), Lightness (0..100)
-
 
     if (demoTime < 12) {
       title(demoTime)
@@ -40,11 +38,11 @@ function draw() {
 
 
 function title(sceneTime) {
-  background(35, 100, 50);
+  background(img);
   textAlign(CENTER, CENTER);
   size = 64
   textSize(size);
-  fill(0, 0, 0); // black
+  fill(35, 100, 50);
   noStroke();
   let y = height + 100 - sceneTime * 100
   texts = 'Virman bileet goes Avaruus'
@@ -52,11 +50,11 @@ function title(sceneTime) {
 }
 
 function intros(sceneTime) {
-  background(35, 100, 50);
+  background(img);
   textAlign(CENTER, CENTER);
   size = 30
   textSize(size);
-  fill(0, 0, 0); // black
+  fill(35, 100, 50); 
   noStroke();
   let y = height + 100 - sceneTime * 100
   let texts = `
@@ -69,10 +67,10 @@ function intros(sceneTime) {
 }
 
 function instructionsScene(sceneTime) {
-    background(35, 100, 50) // orange
+    background(12, 14, 26, 255)
     textAlign(CENTER, CENTER)
     textSize(64)
-    fill(0, 0, 0) // black
+    fill(35, 100, 50);
     noStroke()
     text('Press F to go fullscreen and space to start', width/2, height/2)
 }
