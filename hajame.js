@@ -13,12 +13,25 @@ function draw() {
   // if (demoTime === 0) {
   //     instructionsScene(demoTime)
   // }
-
-  
-  if (demoTime > 0) {
+  console.log(demoTime);
+  if (demoTime < 8 ) {
     // glitchLineTransition(demoTime)
     scrollBg(demoTime)
-    poikaAppears(demoTime, 2)
+  } else if (demoTime < 14) {
+    scrollBg(demoTime)
+    poikaAppears(demoTime, 2.5)
+  } else if (demoTime < 18) {
+    scrollBg(demoTime)
+    poikaAppears(demoTime, 8.5)
+  } else if (demoTime < 26) {
+    scrollBg(demoTime)
+    tyttoAppears(demoTime, -8.5)
+  } else if (demoTime < 38) {
+    scrollBg(demoTime)
+    coupleMeets(demoTime, 8.5)
+  } else if (demoTime < 60) {
+    scrollBg(demoTime)
+    loveTimeYay(demoTime)
   } else {
       endDemo()
   }
@@ -35,6 +48,7 @@ function instructionsScene(sceneTime) {
 
 
 function scrollBg(sceneTime){ 
+
   image(img, 0, bgY1, width, height);
   image(img, 0, bgY2, width, height);
 
@@ -52,9 +66,34 @@ function scrollBg(sceneTime){
 function poikaAppears(sceneTime, speed) {
   translate(width/2, height/2)
   image(poika, poika.width, poikaY, 310, 433)
-  poikaY = poikaY - speed;
+  poikaY = poikaY - (speed);
 }
 
+function tyttoAppears(sceneTime, speed) {
+  translate(width/2, height/2)
+  image(tytto, -tytto.width*2, tyttoY, 310, 433)
+  if (tyttoY < height) {
+    tyttoY = tyttoY - (speed);
+  }
+}
+
+function coupleMeets(sceneTime, speed) {
+  translate(width/2, height/2)
+  image(tytto, -tytto.width*2, tyttoY, 310, 433)
+  if (tyttoY > -tytto.height/2) {
+    tyttoY = tyttoY - (speed);
+  }
+  image(poika, poika.width, poikaY, 310, 433)
+  if (poikaY < -poika.height/2) {
+    poikaY = poikaY + (speed);
+  }
+}
+
+function loveTimeYay(sceneTime) {
+  translate(width/2, height/2)
+  image(tytto, -tytto.width*2, tyttoY, 310, 433)
+  image(poika, poika.width, poikaY, 310, 433)
+}
 
 function glitchLineTransition(sceneTime) {
   
