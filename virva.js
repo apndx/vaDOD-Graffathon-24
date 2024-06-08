@@ -31,8 +31,10 @@ function draw() {
      loveTimeYay(demoTime < -10)
     } else if (demoTime < 80) {
       loveTimeYay2(demoTime)
-    } else if (demoTime < 100) {
+    } else if (demoTime < 90) {
       theEnd(demoTime)
+    } else if (demoTime < 100) {
+      theEndPulse(demoTime)
     } else {
         endDemo()
 
@@ -69,8 +71,10 @@ function scrollBg(sceneTime){
   function title(sceneTime) {
     background(img);
     textAlign(CENTER, CENTER);
-  
-    image(sydan, width / 2, height / 2, sydan.width *0.2, sydan.height *0.2);
+    var diam = 50+ sin(theta) * 10 ;
+    image(sydan,width / 2, height / 2, diam, diam ); 
+    theta += .09 ;  
+    //image(sydan, width / 2, height / 2, sydan.width *0.2, sydan.height *0.2);
     size = 64
     textSize(size);
     fill(35, 100, 50);
@@ -248,14 +252,33 @@ textAlign(CENTER, CENTER);
 size = 20
 textSize(size);
 noStroke();
-fill(189, 41, 45);    //fill(189, 41, 45);  vihreä
+fill(0, 0, 0);    //fill(189, 41, 45);  vihreä fill(189, 41, 45); 
 let texts = 
 `Thank you 
 for 
 organizers`
-text(texts,+20,-70)
+text(texts,20,-70)
 
 }
+
+function theEndPulse(sceneTime) {
+  translate(width/2, height/2)
+  background(img)
+  //var diam = 50 + sin(theta) * 20 ;
+ // image(sydan,0,0, diam, diam ); 
+ // theta += .09 ;  // theta to change the speed
+  var diam = 50+ sin(theta) * 10 ;
+  image(sydan,0,0, diam, diam ); 
+  //image(sydan,width / 2, height / 2, diam, diam ); 
+  theta += .09 ;  
+
+//Tähän vielä . sydän feidaus pois häipyy pois tms 
+
+
+
+}
+
+
 
 function glitchLineTransition(sceneTime) {
   
