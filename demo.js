@@ -6,15 +6,12 @@ function draw() {
 
     textFont('Press Start 2P')
     colorMode(HSL) // Hue (0..360), Saturation (0..100), Lightness (0..100)
-
+    scrollBg(demoTime)
 
     if (demoTime === 0) {
         instructionsScene(demoTime)
-
+        textSize(64)
     } else if (demoTime < 4) {
-        stickScene(demoTime)
-
-    } else if (demoTime < 8) {
         ballScene(demoTime)
 
     } else if (demoTime < 12) {
@@ -50,18 +47,36 @@ function draw() {
 
 
 function instructionsScene(sceneTime) {
-    background(35, 100, 50) // orange
+    background(35, 100, 50, 100) // orange
     textAlign(CENTER, CENTER)
-    textSize(64)
+    textSize(34)
     fill(0, 0, 0) // black
     noStroke()
     text('Press F to go fullscreen and space to start', width/2, height/2)
 }
 
 
+function scrollBg(sceneTime){ 
+    image(img, 0, bgY1, width, height);
+    image(img, 0, bgY2, width, height);
+    
+    console.log(bgY1, bgY2);
+  
+    bgY1 += bgScrollSpeed;
+    bgY2 += bgScrollSpeed;
+    
+    if (bgY1 > height){
+      bgY1 = -height;
+    }
+    if (bgY2 > height){
+      bgY2 = -height;
+    }
+  }
+  
+
 
 function stickScene(sceneTime) {
-    background(35, 100, 50) // orange
+    // background(35, 100, 50) // orange
 
     translate(width/2, height/2)
 
@@ -81,7 +96,7 @@ function stickScene(sceneTime) {
 
 
 function ballScene(sceneTime) {
-    background(210, 100, 50) // blue
+    // background(35, 100, 50) // orange
 
     translate(width/2, height/2)
 
@@ -101,7 +116,7 @@ function ballScene(sceneTime) {
 
 
 function squareScene(sceneTime) {
-    background(340, 100, 50) // purple
+    // background(340, 100, 50) // purple
 
     translate(width/2, height/2)
 
@@ -122,7 +137,7 @@ function squareScene(sceneTime) {
 
 
 function noiseScene(sceneTime) {
-    background(130, 50, 50) // green
+    // background(130, 50, 50) // green
 
     fill(255)
     noStroke()
