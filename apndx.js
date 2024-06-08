@@ -13,7 +13,7 @@ function draw() {
     if (demoTime < 12) {
       title(demoTime)
 
-    } else if (demoTime < 28) {
+    }  else if (demoTime < 28) {
       intros(demoTime-12)
 
     } else if (demoTime < 40) {
@@ -57,6 +57,7 @@ function scrollBg(sceneTime){
 
 function title(sceneTime) {
   background(img);
+  heart()
   textAlign(CENTER, CENTER);
   size = 64
   textSize(size);
@@ -97,7 +98,7 @@ function intros(sceneTime) {
 }
 
 function particlator(sceneTime) {
-  //background(img);
+  background(img);
   // an array to add multiple particles
   let particles = [];
   lines = []
@@ -119,6 +120,19 @@ function drawLines(lines) {
   lines.forEach(li => {
     line(li.x1, li.y1, li.x2, li.y2);
   });
+}
+
+function heart() {
+  translate(width / 2, height / 2);
+  fill('red');
+  noStroke();
+  beginShape();
+  for (let a = 0; a < TWO_PI; a += 0.01) {
+    let x = 16 * pow(sin(a), 3);
+    let y = -(13 * cos(a) - 5 * cos(2*a) - 2 * cos(3*a) - cos(4*a));
+    vertex(x * 10, y * 10);
+  }
+  endShape(CLOSE);
 }
 
 
