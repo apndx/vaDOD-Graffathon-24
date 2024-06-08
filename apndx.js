@@ -8,20 +8,11 @@ function draw() {
     colorMode(HSL) // Hue (0..360), Saturation (0..100), Lightness (0..100)
 
 
-    if (demoTime < 4) {
-      intro1(demoTime)
-
-    } else if (demoTime < 8) {
-      intro2(demoTime)
-
-    } else if (demoTime < 12) {
-      intro3(demoTime)
+    if (demoTime < 12) {
+      title(demoTime)
 
     } else if (demoTime < 16) {
-      intro4(demoTime)
-
-    } else if (demoTime < 20) {
-        //ballScene(demoTime)
+      intros(demoTime-12)
 
     } else if (demoTime < 24) {
         //stickScene(demoTime - 16)
@@ -48,61 +39,38 @@ function draw() {
 }
 
 
-function intro1(sceneTime) {
-  background(35, 100, 50) // ?
-  textAlign(CENTER, CENTER)
-  textSize(64)
-  fill(0, 0, 0) // black
-  noStroke()
-  text('Virman bileet goes Avaruus', width/2, height/2)
-
+function title(sceneTime) {
+  background(35, 100, 50);
+  textAlign(CENTER, CENTER);
+  textSize(64);
+  fill(0, 0, 0); // black
+  noStroke();
+  let y = height + 100 - sceneTime * 100
+  text('Virman bileet goes Avaruus', width/2, y)
 }
 
-function intro2(sceneTime) {
-  background(35, 100, 50) // ?
-  textAlign(CENTER, CENTER)
-  textSize(30)
-  fill(0, 0, 0) // black
-  noStroke()
-  text('Music credits: hajame, Virman Pileet Graffathon 2024 edit', width/2, height/2)
+function intros(sceneTime) {
+  background(35, 100, 50); // ?
+  textAlign(CENTER, CENTER);
+  textSize(30);
+  fill(0, 0, 0); // black
+  noStroke();
+
+  let texts = [
+    'Music credits: Virman Pileet Graffathon 2024 edit by hajame',
+    'Credits: hajame viku apndx',
+    'Greetings to all fellow Graffathon creatures'
+  ];
+
+  let y = height + 100 - (sceneTime * 100);
+
+  for (let i = 0; i < texts.length; i++) {
+    let y = height - (sceneTime * 40 + i * 40);
+
+    text(texts[i], width / 2, y);
+  }
 }
 
-function intro3(sceneTime) {
-  background(35, 100, 50) // ?
-  textAlign(CENTER, CENTER)
-  textSize(30)
-  fill(0, 0, 0) // black
-  noStroke()
-  text('Credits: hajame viku apndx', width/2, height/2)
-}
-
-function intro4(sceneTime) {
-  background(35, 100, 50) // ?
-  textAlign(CENTER, CENTER)
-  textSize(30)
-  fill(0, 0, 0) // black
-  noStroke()
-  text('Greetings to all fellow Graffathon creatures', width/2, height/2)
-}
-
-
-function wave(sceneTime) {
-  background(35, 100, 50) // ?
-  textAlign(CENTER, CENTER)
-  textSize(64)
-  // White ellipse.
-  ellipseMode(RADIUS);
-  fill(255);
-  ellipse(50, 50, 30, 30);
-
-  // Gray ellipse.
-  ellipseMode(CENTER);
-  fill(100);
-  ellipse(50, 50, 30+sceneTime*40, 20+sceneTime*30);
-  rotate(sceneTime)
-  describe('A white circle with a gray circle at its center. Both circles have black outlines.');
-  text('ellipse', width/2, height/2)
-}
 
 
 function instructionsScene(sceneTime) {
@@ -113,7 +81,6 @@ function instructionsScene(sceneTime) {
     noStroke()
     text('Press F to go fullscreen and space to start', width/2, height/2)
 }
-
 
 
 function stickScene(sceneTime) {
