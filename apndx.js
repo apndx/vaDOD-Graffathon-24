@@ -54,10 +54,8 @@ function scrollBg(sceneTime){
 }
 
 
-
 function title(sceneTime) {
   background(img);
-  heart()
   textAlign(CENTER, CENTER);
   size = 64
   textSize(size);
@@ -101,36 +99,27 @@ function particlator(sceneTime) {
   background(img);
   // an array to add multiple particles
   let particles = [];
-  lines = []
-
-  for(let i = 0;i<width/1000;i++){
-    particles.push(new Particle());
+  
+    for(let i = 0;i<width/1000;i++){
+      particles.push(new Particle());
+    }
+  
+    for(let i = 0;i<particles.length;i++) {
+      particles[i].createParticle();
+      particles[i].moveParticle();
+      particles[i].joinParticles(particles.slice(i));
+    }
   }
 
-  for(let i = 0;i<particles.length;i++) {
-    particles[i].createParticle();
-    particles[i].moveParticle();
-    lines.push(particles[i].joinParticles(particles.slice(i)));
-    drawLines(lines)
-  }   
-}
-
-function drawLines(lines) {
-  stroke('rgba(35, 100, 50,255)');
-  lines.forEach(li => {
-    line(li.x1, li.y1, li.x2, li.y2);
-  });
-}
 
 function heart() {
-  translate(width / 2, height / 2);
   fill('red');
   noStroke();
   beginShape();
   for (let a = 0; a < TWO_PI; a += 0.01) {
     let x = 16 * pow(sin(a), 3);
-    let y = -(13 * cos(a) - 5 * cos(2*a) - 2 * cos(3*a) - cos(4*a));
-    vertex(x * 10, y * 10);
+    let i = -(13 * cos(a) - 5 * cos(2*a) - 2 * cos(3*a) - cos(4*a));
+    vertex(x * 10, i * 10);
   }
   endShape(CLOSE);
 }
@@ -149,7 +138,7 @@ class Particle {
 
 // creation of a particle.
   createParticle() {
-    noStroke();
+    noStroke(); 
     fill('rgba(200,169,169,0.5)');
     circle(this.x,this.y,this.r);
   }
@@ -164,25 +153,16 @@ class Particle {
     this.y+=this.ySpeed;
   }
 
+// this function creates the connections(lines)
+// between particles which are less than a certain distance apart
   joinParticles(particles) {
-    particles.forEach(element => {
-      let dis = dist(this.x, this.y, element.x, element.y);
-      let lines = []
-      if (dis < 500) {
+    particles.forEach(element =>{
+      let dis = dist(this.x,this.y,element.x,element.y);
+      if(dis<500) {
         stroke('rgba(35, 100, 50,255)');
-        line(this.x, this.y, element.x, element.y);
-
-        // Save the line
-        lines.push({
-          x1: this.x,
-          y1: this.y,
-          x2: element.x,
-          y2: element.y
-        });
+        line(this.x,this.y,element.x,element.y);
       }
     });
-    return lines
   }
-
-
 }
+

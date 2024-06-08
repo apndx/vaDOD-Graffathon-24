@@ -5,38 +5,16 @@ function draw() {
     const demoTime = getTime() * bpm / 60
 
     textFont('Press Start 2P')
-    colorMode(HSL) // Hue (0..360), Saturation (0..100), Lightness (0..100)
+    //colorMode(HSL) // Hue (0..360), Saturation (0..100), Lightness (0..100)
     scrollBg(demoTime)
 
-    if (demoTime === 0) {
-        instructionsScene(demoTime)
-        textSize(64)
-    } else if (demoTime < 4) {
-        ballScene(demoTime)
 
-    } else if (demoTime < 12) {
-        stickScene(demoTime - 8)
+    if (demoTime < 12) {
+        title(demoTime)
+    
+    }  else if (demoTime < 28) {
+    intros(demoTime-12)
 
-    } else if (demoTime < 16) {
-        ballScene(demoTime)
-
-    } else if (demoTime < 24) {
-        stickScene(demoTime - 16)
-
-    } else if (demoTime < 32) {
-        ballScene(demoTime)
-
-    } else if (demoTime < 40) {
-        squareScene(demoTime - 32)
-
-    } else if (demoTime < 48) {
-        noiseScene(demoTime)
-
-    } else if (demoTime < 56) {
-        squareScene(demoTime - 48)
-
-    } else if (demoTime < 64) {
-        noiseScene(demoTime)
 
     } else {
         endDemo()
@@ -69,6 +47,47 @@ function scrollBg(sceneTime){
     if (bgY2 > height){
       bgY2 = -height;
     }
+  }
+
+  function title(sceneTime) {
+    background(img);
+    textAlign(CENTER, CENTER);
+    size = 64
+    textSize(size);
+    fill(35, 100, 50);
+    noStroke();
+    let y = height + 100 - sceneTime * 100
+    texts = 'Virman bileet goes Avaruus'
+    text(texts, width/2, y)
+  }
+  
+  function intros(sceneTime) {
+    background(img);
+    textAlign(CENTER, CENTER);
+    size = 30
+    textSize(size);
+    fill(35, 100, 50); 
+    noStroke();
+    let y = height + 100 - sceneTime * 100
+    let texts = `
+      Music credits 
+      Virman Pileet Graffathon 2024 edit by hajame
+  
+  
+  
+  
+  
+      Credits
+      hajame viku apndx
+  
+  
+  
+  
+  
+      Greetings to all fellow Graffathon creatures
+      `;
+  
+    text(texts, width/2, y)
   }
   
 
