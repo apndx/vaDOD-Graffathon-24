@@ -57,6 +57,7 @@ function scrollBg(sceneTime){
 function title(sceneTime) {
   background(img);
   textAlign(CENTER, CENTER);
+  image(sydan, width / 2, height / 2, sydan.width *0.2, sydan.height *0.2);
   size = 64
   textSize(size);
   fill(35, 100, 50);
