@@ -1,5 +1,6 @@
 audioPlayer = document.querySelector('#song')
 
+
 function draw() {
     const bpm = 132
     const demoTime = getTime() * bpm / 60
@@ -11,35 +12,35 @@ function draw() {
     if (demoTime === 0) {
         instructionsScene(demoTime)
 
-    } else if (demoTime < 4) {
-        stickScene(demoTime)
-
-    } else if (demoTime < 8) {
-        ballScene(demoTime)
-
-    } else if (demoTime < 12) {
-        stickScene(demoTime - 8)
-
-    } else if (demoTime < 16) {
-        ballScene(demoTime)
-
-    } else if (demoTime < 24) {
-        stickScene(demoTime - 16)
-
     } else if (demoTime < 32) {
-        ballScene(demoTime)
+        scrollBg(demoTime)
 
-    } else if (demoTime < 40) {
-        squareScene(demoTime - 32)
+    // } else if (demoTime < 8) {
+    //     ballScene(demoTime)
 
-    } else if (demoTime < 48) {
-        noiseScene(demoTime)
+    // } else if (demoTime < 12) {
+    //     stickScene(demoTime - 8)
 
-    } else if (demoTime < 56) {
-        squareScene(demoTime - 48)
+    // } else if (demoTime < 16) {
+    //     ballScene(demoTime)
 
-    } else if (demoTime < 64) {
-        noiseScene(demoTime)
+    // } else if (demoTime < 24) {
+    //     stickScene(demoTime - 16)
+
+    // } else if (demoTime < 32) {
+    //     ballScene(demoTime)
+
+    // } else if (demoTime < 40) {
+    //     squareScene(demoTime - 32)
+
+    // } else if (demoTime < 48) {
+    //     noiseScene(demoTime)
+
+    // } else if (demoTime < 56) {
+    //     squareScene(demoTime - 48)
+
+    // } else if (demoTime < 64) {
+    //     noiseScene(demoTime)
 
     } else {
         endDemo()
@@ -48,9 +49,49 @@ function draw() {
 }
 
 
+//var img;
+var x11 = 0,x12=0;
+var x21,x22;
+
+var vel1 = 4,vel2=2;
+
+x21 = width;
+x22 = width;
+//function preload(){
+	//bgImg1 = loadImage("bg.png");
+ // img = loadImage("parallax-forest-middle-trees.png");
+//}
+
+
+function scrollBg(sceneTime){ 
+    image(img, x11, 0, width, height);
+    image(img, x21, 0, width, height);
+    image(img, x12, 0, width, height);
+    image(img, x22, 0, width, height);
+//   image(bgImg1, x11, 0, width, height);
+//   image(bgImg1, x21, 0, width, height);
+//   image(bgImg2, x12, 0, width, height);
+//   image(bgImg2, x22, 0, width, height);
+  
+  x11 -= vel1;
+  x21 -= vel1;
+  
+  x12 -= vel2;
+  x22 -= vel2;
+  
+  if (x11 < -width) x11 = width;
+  if (x21 < -width) x21 = width;
+  if (x12 < -width) x12 = width;
+  if (x22 < -width) x22 = width;
+  
+}
+
+
 
 function instructionsScene(sceneTime) {
+    //background(bg);
     background(35, 100, 50) // orange
+    image(img, 0, 0);
     textAlign(CENTER, CENTER)
     textSize(64)
     fill(0, 0, 0) // black
@@ -61,8 +102,8 @@ function instructionsScene(sceneTime) {
 
 
 function stickScene(sceneTime) {
-    background(35, 100, 50) // orange
-
+    //background(35, 100, 50) // orange
+    image(img, 0, 0);
     translate(width/2, height/2)
 
     fill(0, 0, 0) // black
