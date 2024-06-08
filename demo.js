@@ -59,8 +59,6 @@ function instructionsScene(sceneTime) {
 function scrollBg(sceneTime){ 
     image(img, 0, bgY1, width, height);
     image(img, 0, bgY2, width, height);
-    
-    console.log(bgY1, bgY2);
   
     bgY1 += bgScrollSpeed;
     bgY2 += bgScrollSpeed;
