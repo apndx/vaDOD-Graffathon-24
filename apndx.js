@@ -100,17 +100,25 @@ function particlator(sceneTime) {
   //background(img);
   // an array to add multiple particles
   let particles = [];
+  lines = []
 
-    for(let i = 0;i<width/1000;i++){
-      particles.push(new Particle());
-    }
+  for(let i = 0;i<width/1000;i++){
+    particles.push(new Particle());
+  }
 
-    for(let i = 0;i<particles.length;i++) {
-      particles[i].createParticle();
-      particles[i].moveParticle();
-      particles[i].joinParticles(particles.slice(i));
-    }
-    
+  for(let i = 0;i<particles.length;i++) {
+    particles[i].createParticle();
+    particles[i].moveParticle();
+    lines.push(particles[i].joinParticles(particles.slice(i)));
+    drawLines(lines)
+  }   
+}
+
+function drawLines(lines) {
+  stroke('rgba(35, 100, 50,255)');
+  lines.forEach(li => {
+    line(li.x1, li.y1, li.x2, li.y2);
+  });
 }
 
 
@@ -142,15 +150,25 @@ class Particle {
     this.y+=this.ySpeed;
   }
 
-// this function creates the connections(lines)
-// between particles which are less than a certain distance apart
   joinParticles(particles) {
-    particles.forEach(element =>{
-      let dis = dist(this.x,this.y,element.x,element.y);
-      if(dis<500) {
+    particles.forEach(element => {
+      let dis = dist(this.x, this.y, element.x, element.y);
+      let lines = []
+      if (dis < 500) {
         stroke('rgba(35, 100, 50,255)');
-        line(this.x,this.y,element.x,element.y);
+        line(this.x, this.y, element.x, element.y);
+
+        // Save the line
+        lines.push({
+          x1: this.x,
+          y1: this.y,
+          x2: element.x,
+          y2: element.y
+        });
       }
     });
+    return lines
   }
+
+
 }
