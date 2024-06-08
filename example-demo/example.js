@@ -1,7 +1,7 @@
 audioPlayer = document.querySelector('#song')
 
 function draw() {
-    const bpm = 115
+    const bpm = 132
     const demoTime = getTime() * bpm / 60
 
     textFont('Londrina Solid')
