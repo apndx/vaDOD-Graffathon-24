@@ -244,7 +244,7 @@ text(`Viddu nyt lähti bileet!`,width/-900, height/2-150)
 }
 
 function theEnd(sceneTime) {
-  background(img)
+ // background(img)
   translate(width/2, height/2)
   image(kiitos,-400,-200)
 
@@ -263,7 +263,7 @@ text(texts,20,-70)
 
 function theEndPulse(sceneTime) {
   translate(width/2, height/2)
-  background(img)
+  //background(img)
   //var diam = 50 + sin(theta) * 20 ;
  // image(sydan,0,0, diam, diam ); 
  // theta += .09 ;  // theta to change the speed
@@ -274,7 +274,23 @@ function theEndPulse(sceneTime) {
 
 //Tähän vielä . sydän feidaus pois häipyy pois tms 
 
+textAlign(CENTER, CENTER);
+size = 150
+textSize(size);
+noStroke();
+fill(35, 100, 50);//fill(189, 41, 45); 
+let graftext = `
+ Graffathon`;
 
+text(graftext,0, -200)
+
+size = 100
+textSize(size);
+noStroke();
+fill(35, 100, 50);//fill(189, 41, 45); 
+
+
+text(`2024`,0, 200)
 
 }
 
