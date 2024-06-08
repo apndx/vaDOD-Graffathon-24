@@ -8,24 +8,13 @@ function draw() {
     colorMode(HSL) // Hue (0..360), Saturation (0..100), Lightness (0..100)
 
 
-    if (demoTime === 0) {
-        //instructionsScene(demoTime)
-        intro(demoTime)
+    if (demoTime < 12) {
+      title(demoTime)
 
-    } else if (demoTime < 4) {
-        intro(demoTime)
-        //stickScene(demoTime)
+    } else if (demoTime < 28) {
+      intros(demoTime-12)
 
-    } else if (demoTime < 8) {
-        //ballScene(demoTime)
-
-    } else if (demoTime < 12) {
-        //stickScene(demoTime - 8)
-
-    } else if (demoTime < 16) {
-        //ballScene(demoTime)
-
-    } else if (demoTime < 24) {
+    } else if (demoTime < 30) {
         //stickScene(demoTime - 16)
 
     } else if (demoTime < 32) {
@@ -45,48 +34,39 @@ function draw() {
 
     } else {
         endDemo()
-
+ 
     }
 }
 
 
-function intro(sceneTime) {
-  background(35, 100, 50) // ?
-  textAlign(CENTER, CENTER)
-  textSize(64)
-  // White ellipse.
-  ellipseMode(RADIUS);
-  fill(255);
-  ellipse(50, 50, 30, 30);
-
-  // Gray ellipse.
-  ellipseMode(CENTER);
-  fill(100);
-  ellipse(50, 50, 30+sceneTime*40, 20+sceneTime*30);
-  rotate(sceneTime)
-  describe('A white circle with a gray circle at its center. Both circles have black outlines.');
-  text('ellipse', width/2, height/2)
+function title(sceneTime) {
+  background(35, 100, 50);
+  textAlign(CENTER, CENTER);
+  size = 64
+  textSize(size);
+  fill(0, 0, 0); // black
+  noStroke();
+  let y = height + 100 - sceneTime * 100
+  texts = 'Virman bileet goes Avaruus'
+  text(texts, width/2, y)
 }
 
+function intros(sceneTime) {
+  background(35, 100, 50);
+  textAlign(CENTER, CENTER);
+  size = 30
+  textSize(size);
+  fill(0, 0, 0); // black
+  noStroke();
+  let y = height + 100 - sceneTime * 100
+  let texts = `
+    Music credits: Virman Pileet Graffathon 2024 edit by hajame
+    Credits: hajame viku apndx
+    Greetings to all fellow Graffathon creatures
+    `;
 
-function wave(sceneTime) {
-  background(35, 100, 50) // ?
-  textAlign(CENTER, CENTER)
-  textSize(64)
-  // White ellipse.
-  ellipseMode(RADIUS);
-  fill(255);
-  ellipse(50, 50, 30, 30);
-
-  // Gray ellipse.
-  ellipseMode(CENTER);
-  fill(100);
-  ellipse(50, 50, 30+sceneTime*40, 20+sceneTime*30);
-  rotate(sceneTime)
-  describe('A white circle with a gray circle at its center. Both circles have black outlines.');
-  text('ellipse', width/2, height/2)
+  text(texts, width/2, y)
 }
-
 
 function instructionsScene(sceneTime) {
     background(35, 100, 50) // orange
@@ -96,7 +76,6 @@ function instructionsScene(sceneTime) {
     noStroke()
     text('Press F to go fullscreen and space to start', width/2, height/2)
 }
-
 
 
 function stickScene(sceneTime) {
