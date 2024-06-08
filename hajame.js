@@ -18,10 +18,9 @@ function draw() {
   if (demoTime > 0) {
     // glitchLineTransition(demoTime)
     scrollBg(demoTime)
-
+    poikaAppears(demoTime, 2)
   } else {
       endDemo()
-
   }
 }
 
@@ -44,10 +43,16 @@ function scrollBg(sceneTime){
   
   if (bgY1 > height){
     bgY1 = -height;
-  }
+  }  
   if (bgY2 > height){
     bgY2 = -height;
   }
+}
+
+function poikaAppears(sceneTime, speed) {
+  translate(width/2, height/2)
+  image(poika, poika.width, poikaY, 310, 433)
+  poikaY = poikaY - speed;
 }
 
 
