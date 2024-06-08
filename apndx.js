@@ -11,10 +11,10 @@ function draw() {
     if (demoTime < 12) {
       title(demoTime)
 
-    } else if (demoTime < 16) {
+    } else if (demoTime < 28) {
       intros(demoTime-12)
 
-    } else if (demoTime < 24) {
+    } else if (demoTime < 30) {
         //stickScene(demoTime - 16)
 
     } else if (demoTime < 32) {
@@ -34,7 +34,7 @@ function draw() {
 
     } else {
         endDemo()
-
+ 
     }
 }
 
@@ -42,36 +42,31 @@ function draw() {
 function title(sceneTime) {
   background(35, 100, 50);
   textAlign(CENTER, CENTER);
-  textSize(64);
+  size = 64
+  textSize(size);
   fill(0, 0, 0); // black
   noStroke();
   let y = height + 100 - sceneTime * 100
-  text('Virman bileet goes Avaruus', width/2, y)
+  texts = 'Virman bileet goes Avaruus'
+  text(texts, width/2, y)
 }
 
 function intros(sceneTime) {
-  background(35, 100, 50); // ?
+  background(35, 100, 50);
   textAlign(CENTER, CENTER);
-  textSize(30);
+  size = 30
+  textSize(size);
   fill(0, 0, 0); // black
   noStroke();
+  let y = height + 100 - sceneTime * 100
+  let texts = `
+    Music credits: Virman Pileet Graffathon 2024 edit by hajame
+    Credits: hajame viku apndx
+    Greetings to all fellow Graffathon creatures
+    `;
 
-  let texts = [
-    'Music credits: Virman Pileet Graffathon 2024 edit by hajame',
-    'Credits: hajame viku apndx',
-    'Greetings to all fellow Graffathon creatures'
-  ];
-
-  let y = height + 100 - (sceneTime * 100);
-
-  for (let i = 0; i < texts.length; i++) {
-    let y = height - (sceneTime * 40 + i * 40);
-
-    text(texts[i], width / 2, y);
-  }
+  text(texts, width/2, y)
 }
-
-
 
 function instructionsScene(sceneTime) {
     background(35, 100, 50) // orange
