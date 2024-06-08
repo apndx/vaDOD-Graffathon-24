@@ -58,8 +58,20 @@ function intros(sceneTime) {
   noStroke();
   let y = height + 100 - sceneTime * 100
   let texts = `
-    Music credits: Virman Pileet Graffathon 2024 edit by hajame
-    Credits: hajame viku apndx
+    Music credits 
+    Virman Pileet Graffathon 2024 edit by hajame
+
+
+
+    
+
+    Credits
+    hajame viku apndx
+
+
+
+
+
     Greetings to all fellow Graffathon creatures
     `;
 
