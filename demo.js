@@ -4,7 +4,7 @@ function draw() {
     const bpm = 115
     const demoTime = getTime() * bpm / 60
 
-    textFont('Londrina Solid')
+    textFont('Press Start 2P')
     colorMode(HSL) // Hue (0..360), Saturation (0..100), Lightness (0..100)
 
 
