@@ -31,6 +31,8 @@ function draw() {
      loveTimeYay(demoTime < -10)
     } else if (demoTime < 80) {
       loveTimeYay2(demoTime)
+    } else if (demoTime < 100) {
+      theEnd(demoTime)
     } else {
         endDemo()
 
@@ -237,7 +239,23 @@ text(`Viddu nyt lähti bileet!`,width/-900, height/2-150)
 
 }
 
- 
+function theEnd(sceneTime) {
+  background(img)
+  translate(width/2, height/2)
+  image(kiitos,-400,-200)
+
+textAlign(CENTER, CENTER);
+size = 20
+textSize(size);
+noStroke();
+fill(189, 41, 45);    //fill(189, 41, 45);  vihreä
+let texts = 
+`Thank you 
+for 
+organizers`
+text(texts,+20,-70)
+
+}
 
 function glitchLineTransition(sceneTime) {
   
