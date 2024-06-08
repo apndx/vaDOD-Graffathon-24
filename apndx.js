@@ -5,31 +5,26 @@ function draw() {
     const demoTime = getTime() * bpm / 60
 
     textFont('Press Start 2P')
+    scrollBg(demoTime)
 
-    if (demoTime < 64) {
-      scrollBg(demoTime)
-    }
 
     if (demoTime < 12) {
       title(demoTime)
-
     }  else if (demoTime < 28) {
       intros(demoTime-12)
-
+    } else if (demoTime < 30) {
+      poikaAppears(demoTime, 2.5)
+    } else if (demoTime < 35) {
+      poikaAppears(demoTime, 8.5)
     } else if (demoTime < 40) {
-      particlator(demoTime - 28)
+      tyttoAppears(demoTime, -13.0)
+    } else if (demoTime < 45) {
+      coupleMeets(demoTime, 8.5)
+    } else if (demoTime < 60) {
+      loveTimeYay(demoTime)
 
-    } else if (demoTime < 40) {
-        //squareScene(demoTime - 32)
-
-    } else if (demoTime < 48) {
-        //noiseScene(demoTime)
-
-    } else if (demoTime < 56) {
-        //squareScene(demoTime - 48)
-
-    } else if (demoTime < 64) {
-        //noiseScene(demoTime)
+    } else if (demoTime < 80) {
+      particlator(demoTime - 60)
 
     } else {
         endDemo()
@@ -104,8 +99,13 @@ function intros(sceneTime) {
 }
 
 function particlator(sceneTime) {
-  background(img);
+  //background(img);
   // an array to add multiple particles
+  push();
+  translate(width/2, height/2)
+  image(tytto, -tytto.width*2, tyttoY, 310, 433)
+  image(poika, poika.width, poikaY, 310, 433)
+  pop();
   let particles = [];
   
     for(let i = 0;i<width/1000;i++){
@@ -139,7 +139,7 @@ class Particle {
   constructor(){
     this.x = random(0,width);
     this.y = random(0,height);
-    this.r = random(1,8);
+    this.r = random(1,20);
     this.xSpeed = random(-2,2);
     this.ySpeed = random(-1,1.5);
   }
@@ -147,7 +147,7 @@ class Particle {
 // creation of a particle.
   createParticle() {
     noStroke(); 
-    fill('rgba(200,169,169,0.5)');
+    fill('rgba(200,169,169,255)');
     circle(this.x,this.y,this.r);
   }
 
@@ -174,3 +174,61 @@ class Particle {
   }
 }
 
+function poikaAppears(sceneTime, speed) {
+  translate(width/2, height/2)
+  image(poika, poika.width, poikaY, 310, 433)
+  poikaY = poikaY - (speed);
+}
+
+function tyttoAppears(sceneTime, speed) {
+  translate(width/2, height/2)
+  image(tytto, -tytto.width*2, tyttoY, 310, 433)
+  if (tyttoY < height) {
+    tyttoY = tyttoY - (speed);
+  }
+}
+
+function coupleMeets(sceneTime, speed) {
+  translate(width/2, height/2)
+  image(tytto, -tytto.width*2, tyttoY, 310, 433)
+  if (tyttoY > -tytto.height/2) {
+    tyttoY = tyttoY - (speed);
+  }
+  image(poika, poika.width, poikaY, 310, 433)
+  if (poikaY < -poika.height/2) {
+    poikaY = poikaY + (speed);
+  }
+}
+
+function loveTimeYay(sceneTime) {
+  translate(width/2, height/2)
+  image(tytto, -tytto.width*2, tyttoY, 310, 433)
+  image(poika, poika.width, poikaY, 310, 433)
+}
+
+function glitchLineTransition(sceneTime) {
+  
+  background(0); // Set the background to black
+  y = y - 5;
+  if (y < 0) {
+    y = height;
+  }
+  stroke(255);
+  strokeWeight(4)
+  line(0, y, width, y);
+  
+  const time = Math.floor(sceneTime * 60)
+  if (time % 4 === 0) {
+    stroke(155);
+    strokeWeight(2)
+    let line2y = Math.random() * y
+    line(0, line2y, width, line2y); 
+  }
+
+  if (Math.floor(sceneTime * 60) % 3 === 0) {
+    stroke(155);
+    strokeWeight(2)
+    let line3y = y / Math.random()
+    line(0, line3y, width, line3y); 
+  }
+}
