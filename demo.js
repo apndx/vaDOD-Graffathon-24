@@ -10,12 +10,19 @@ function draw() {
 
 
     if (demoTime < 12) {
-        title(demoTime)
-    
+      title(demoTime)
     }  else if (demoTime < 28) {
-    intros(demoTime-12)
-
-
+      intros(demoTime-12)
+    } else if (demoTime < 30) {
+      poikaAppears(demoTime, 2.5)
+    } else if (demoTime < 35) {
+      poikaAppears(demoTime, 8.5)
+    } else if (demoTime < 40) {
+      tyttoAppears(demoTime, -13.0)
+    } else if (demoTime < 45) {
+      coupleMeets(demoTime, 8.5)
+    } else if (demoTime < 60) {
+      loveTimeYay(demoTime)
     } else {
         endDemo()
 
@@ -111,64 +118,91 @@ function stickScene(sceneTime) {
     line(0, 100, 0, 300)
 }
 
+function intros(sceneTime) {
+  background(img);
+  textAlign(CENTER, CENTER);
+  size = 30
+  textSize(size);
+  fill(35, 100, 50); 
+  noStroke();
+  let y = height + 100 - sceneTime * 100
+  let texts = `
+    Music credits 
+    Virman Pileet Graffathon 2024 edit by hajame
 
 
-function ballScene(sceneTime) {
-    // background(35, 100, 50) // orange
 
-    translate(width/2, height/2)
 
-    fill(0, 0, 100) // white
-    noStroke()
 
-    text(sceneTime.toFixed(2), 0, 0)
+    Credits
+    hajame viku apndx
 
-    rotate(sceneTime)
 
-    const bump = sceneTime - Math.floor(sceneTime)
-    // https://p5js.org/reference/#/p5/map
-    const radius = map(bump, 0, 1, 0, 100)
-    ellipse(0, 200, radius, radius)
+
+
+
+    Greetings to all fellow Graffathon creatures
+    `;
+
+  text(texts, width/2, y)
 }
 
-
-
-function squareScene(sceneTime) {
-    // background(340, 100, 50) // purple
-
-    translate(width/2, height/2)
-
-    stroke(0, 0, 100) // white
-    strokeWeight(10)
-    noFill()
-
-    // https://p5js.org/reference/#/p5/rectMode
-    rectMode(CENTER)
-    for (let i = 0; i < 10; i++) {
-        rotate(sceneTime * 0.1)
-        // https://p5js.org/reference/#/p5/scale
-        scale(0.9)
-        rect(0, 0, 500, 500)
-    }
+function poikaAppears(sceneTime, speed) {
+  translate(width/2, height/2)
+  image(poika, poika.width, poikaY, 310, 433)
+  poikaY = poikaY - (speed);
 }
 
+function tyttoAppears(sceneTime, speed) {
+  translate(width/2, height/2)
+  image(tytto, -tytto.width*2, tyttoY, 310, 433)
+  if (tyttoY < height) {
+    tyttoY = tyttoY - (speed);
+  }
+}
 
+function coupleMeets(sceneTime, speed) {
+  translate(width/2, height/2)
+  image(tytto, -tytto.width*2, tyttoY, 310, 433)
+  if (tyttoY > -tytto.height/2) {
+    tyttoY = tyttoY - (speed);
+  }
+  image(poika, poika.width, poikaY, 310, 433)
+  if (poikaY < -poika.height/2) {
+    poikaY = poikaY + (speed);
+  }
+}
 
-function noiseScene(sceneTime) {
-    // background(130, 50, 50) // green
+function loveTimeYay(sceneTime) {
+  translate(width/2, height/2)
+  image(tytto, -tytto.width*2, tyttoY, 310, 433)
+  image(poika, poika.width, poikaY, 310, 433)
+}
 
-    fill(255)
-    noStroke()
+function glitchLineTransition(sceneTime) {
+  
+  background(0); // Set the background to black
+  y = y - 5;
+  if (y < 0) {
+    y = height;
+  }
+  stroke(255);
+  strokeWeight(4)
+  line(0, y, width, y);
+  
+  const time = Math.floor(sceneTime * 60)
+  if (time % 4 === 0) {
+    stroke(155);
+    strokeWeight(2)
+    let line2y = Math.random() * y
+    line(0, line2y, width, line2y); 
+  }
 
-    // https://p5js.org/reference/#/p5/beginShape
-    beginShape()
-    for (let i = 0; i < 100; i++) {
-        const x = map(i, 0, 99, 0, width)
-        // https://p5js.org/reference/#/p5/noise
-        const y = noise(i * 0.1, sceneTime / 16) * height
-        vertex(x, y)
-    }
-    vertex(width, 800)
-    vertex(0, 800)
-    endShape(CLOSE)
+  if (Math.floor(sceneTime * 60) % 3 === 0) {
+    stroke(155);
+    strokeWeight(2)
+    let line3y = y / Math.random()
+    line(0, line3y, width, line3y); 
+  }
+  
 }
