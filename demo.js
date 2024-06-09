@@ -12,9 +12,9 @@ function draw() {
     console.log(demoTime);
     if (demoTime < 12) {
       title(demoTime)
-    }  else if (demoTime < 28) {
+    }  else if (demoTime < 27) {
       intros(demoTime-12)
-    } else if (demoTime < 30) {
+    } else if (demoTime < 32) { 
       isBgScroll = true;
       poikaAppears(demoTime, 2.5)
     } else if (demoTime < 35) {
@@ -180,7 +180,7 @@ function theEnd(sceneTime) {
     for 
     organizers
   `
-  text(texts,20,-70)
+  text(texts,-10,-70)
 }
 
 function theEndPulse(sceneTime) {
@@ -196,8 +196,7 @@ function theEndPulse(sceneTime) {
   textSize(size);
   noStroke();
   fill(35, 100, 50);
-  let graftext = `
-  Graffathon`;
+  let graftext = `Graffathon`;
 
   text(graftext,0, -200)
 
@@ -205,7 +204,7 @@ function theEndPulse(sceneTime) {
   textSize(size);
   noStroke();
   fill(35, 100, 50);
-  text(`2024`,0, 200)
+  text(`2024`,30, 200)
 }
 
 function glitchLineTransition(sceneTime) {
