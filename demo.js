@@ -29,6 +29,10 @@ function draw() {
       loveTimeYay2(demoTime)
     } else if (demoTime < 75) {
       particlator()
+
+    } else if (demoTime < 80) {
+        animalRain(koira)
+
     } else if (demoTime < 100) {
       theEnd(demoTime)
     } else if (demoTime < 110) {
@@ -253,3 +257,23 @@ function particlator() {
     }
   }
 
+
+function animalRain(img) {
+
+  for(let i = 0; i < 10; i++) {
+    sprinkleAnimals(img);
+  }
+
+}
+
+function sprinkleAnimals(img) {
+    push();
+    const x = random(width);
+    const y = random(height);
+    const size = random(50, 200);
+    const angle = random(TWO_PI);
+    translate(x, y);
+    rotate(angle);
+    image(img, 0, 0, size, size);
+    pop();
+  }
