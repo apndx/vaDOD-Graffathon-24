@@ -26,7 +26,7 @@ function draw() {
     } else if (demoTime < 65) {
       loveTimeYay2(demoTime)
     } else if (demoTime < 75) {
-      particlator(demoTime - 65)
+      particlator()
     } else if (demoTime < 100) {
       theEnd(demoTime)
     } else if (demoTime < 110) {
@@ -228,7 +228,7 @@ function glitchLineTransition(sceneTime) {
   
 }
 
-function particlator(sceneTime) {
+function particlator() {
   //background(img);
   // an array to add multiple particles
   push();
