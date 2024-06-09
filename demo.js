@@ -284,6 +284,12 @@ function animalRain() {
       image(cat.img, 0, 0, cat.size, cat.size);
       pop();
   }
+  for (let i = 0; i < cats.length; i++) {
+    cats[i].moveCreature();
+  }
+  for (let i = 0; i < dogs.length; i++) {
+    dogs[i].moveCreature();
+  }
 }
 
 function blobs(sceneTime) {
