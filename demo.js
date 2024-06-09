@@ -43,8 +43,10 @@ function draw() {
     } else if (demoTime < 80) {
       blobs(demoTime)
     } else if (demoTime < 88) {
+      glitchLineTransition(demoTime)
+    } else if (demoTime < 91) {
       theEnd(demoTime)
-    } else if (demoTime < 94) {
+    } else if (demoTime < 96) {
       theEndPulse(demoTime)
     }
     else {
@@ -219,27 +221,26 @@ function theEndPulse(sceneTime) {
 
 function glitchLineTransition(sceneTime) {
   
-  background(0); // Set the background to black
-  y = y - 5;
-  if (y < 0) {
-    y = height;
+  glitchY = glitchY - 5;
+  if (glitchY < 0) {
+    glitchY = height;
   }
   stroke(255);
   strokeWeight(4)
-  line(0, y, width, y);
+  line(0, glitchY, width, glitchY);
   
   const time = Math.floor(sceneTime * 60)
   if (time % 4 === 0) {
     stroke(155);
     strokeWeight(2)
-    let line2y = Math.random() * y
+    let line2y = Math.random() * glitchY
     line(0, line2y, width, line2y); 
   }
 
   if (Math.floor(sceneTime * 60) % 3 === 0) {
     stroke(155);
     strokeWeight(2)
-    let line3y = y / Math.random()
+    let line3y = glitchY / Math.random()
     line(0, line3y, width, line3y); 
   }
   
