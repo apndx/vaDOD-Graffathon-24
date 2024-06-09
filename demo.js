@@ -22,16 +22,18 @@ function draw() {
     } else if (demoTime < 45) {
       coupleMeets(demoTime, 8.5)
     } else if (demoTime < 53) {
-     loveTimeYay(demoTime < -10)
-    } else if (demoTime < 80) {
+      loveTimeYay(demoTime < -10)
+    } else if (demoTime < 65) {
       loveTimeYay2(demoTime)
-    } else if (demoTime < 90) {
-      theEnd(demoTime)
+    } else if (demoTime < 75) {
+      particlator(demoTime - 65)
     } else if (demoTime < 100) {
+      theEnd(demoTime)
+    } else if (demoTime < 110) {
       theEndPulse(demoTime)
-    } else {
+    }
+    else {
         endDemo()
-
     }
 }
 
@@ -284,3 +286,25 @@ function glitchLineTransition(sceneTime) {
   }
   
 }
+
+function particlator(sceneTime) {
+  //background(img);
+  // an array to add multiple particles
+  push();
+  translate(width/2, height/2)
+  image(tytto, -tytto.width*2, tyttoY, 310, 433)
+  image(poika, poika.width, poikaY, 310, 433)
+  pop();
+  let particles = [];
+  
+    for(let i = 0;i<width/1000;i++){
+      particles.push(new Particle());
+    }
+  
+    for(let i = 0;i<particles.length;i++) {
+      particles[i].createParticle();
+      particles[i].moveParticle();
+      particles[i].joinParticles(particles.slice(i));
+    }
+  }
+
