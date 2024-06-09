@@ -22,7 +22,7 @@ function draw() {
     } else if (demoTime < 45) {
       coupleMeets(demoTime, 8.5)
     } else if (demoTime < 53) {
-     loveTimeYay(demoTime < -10)
+      loveTimeYay(demoTime < -10)
     } else if (demoTime < 80) {
       loveTimeYay2(demoTime)
     } else if (demoTime < 90) {
@@ -37,7 +37,6 @@ function draw() {
 
 
 
-
 function instructionsScene(sceneTime) {
     background(35, 100, 50, 100) // orange
     textAlign(CENTER, CENTER)
@@ -46,7 +45,6 @@ function instructionsScene(sceneTime) {
     noStroke()
     text('Press F to go fullscreen and space to start', width/2, height/2)
 }
-
 
 function scrollBg(sceneTime){ 
     image(img, 0, bgY1, width, height);
@@ -104,55 +102,7 @@ function scrollBg(sceneTime){
   
     text(texts, width/2, y)
   }
-  
 
-
-function stickScene(sceneTime) {
-    // background(35, 100, 50) // orange
-
-    translate(width/2, height/2)
-
-    fill(0, 0, 0) // black
-    noStroke()
-    // https://www.w3schools.com/jsref/jsref_tofixed.asp
-    text(sceneTime.toFixed(2), 0, 0)
-
-    stroke(0, 0, 0) // black
-    strokeWeight(10)
-
-    // https://p5js.org/reference/#/p5/rotate
-    rotate(sceneTime)
-    line(0, 100, 0, 300)
-}
-
-function intros(sceneTime) {
-  background(img);
-  textAlign(CENTER, CENTER);
-  size = 30
-  textSize(size);
-  fill(35, 100, 50); 
-  noStroke();
-  let y = height + 100 - sceneTime * 100
-  let texts = `
-    Music credits 
-    Virman Pileet Graffathon 2024 edit by hajame
-
-
-
-
-
-    Credits
-    hajame viku apndx
-
-
-
-
-
-    Greetings to all fellow Graffathon creatures
-    `;
-
-  text(texts, width/2, y)
-}
 
 function poikaAppears(sceneTime, speed) {
   translate(width/2, height/2)
