@@ -21,13 +21,20 @@ function draw() {
       tyttoAppears(demoTime, -13.0)
     } else if (demoTime < 45) {
       coupleMeets(demoTime, 8.5)
-    } else if (demoTime < 60) {
-      loveTimeYay(demoTime)
+    } else if (demoTime < 53) {
+     loveTimeYay(demoTime < -10)
+    } else if (demoTime < 80) {
+      loveTimeYay2(demoTime)
+    } else if (demoTime < 90) {
+      theEnd(demoTime)
+    } else if (demoTime < 100) {
+      theEndPulse(demoTime)
     } else {
         endDemo()
 
     }
 }
+
 
 
 
@@ -175,8 +182,79 @@ function coupleMeets(sceneTime, speed) {
 
 function loveTimeYay(sceneTime) {
   translate(width/2, height/2)
+
   image(tytto, -tytto.width*2, tyttoY, 310, 433)
   image(poika, poika.width, poikaY, 310, 433)
+  var diam = 100 + sin(theta) * maxDiameter ;
+  image(sydan,-tytto.width+150, tyttoY, diam + sydan.width-100, diam+ sydan.height); 
+
+  theta += .09 ;   // theta to change the speed
+}
+
+function loveTimeYay2(sceneTime) {
+  if(random(1)>0.5){
+    background(img)
+ }else{
+    background(color(236, 171, 201,50))
+ }
+  translate(width/2, height/2)
+  image(tytto, -tytto.width*2, tyttoY, 310, 433)
+  image(poika, poika.width, poikaY, 310, 433)
+  var diam = 100 + sin(theta) * maxDiameter ;
+  image(sydan,-tytto.width+150, tyttoY, diam + sydan.width-100, diam + sydan.height); 
+  theta += .89 ;  // theta to change the speed
+ 
+ 
+textAlign(CENTER, CENTER);
+size = 80
+textSize(size);
+noStroke();
+fill(189, 41, 45);    //fill(189, 41, 45);  vihreä
+
+text(`Viddu nyt lähti bileet!`,width/-900, height/2-150)
+
+}
+
+function theEnd(sceneTime) {
+  translate(width/2, height/2)
+  image(kiitos,-400,-200)
+
+  textAlign(CENTER, CENTER);
+  size = 20
+  textSize(size);
+  noStroke();
+  fill(0, 0, 0);    //fill(189, 41, 45);  vihreä fill(189, 41, 45); 
+  let texts = `
+    Thank you 
+    for 
+    organizers
+  `
+  text(texts,20,-70)
+}
+
+function theEndPulse(sceneTime) {
+  translate(width/2, height/2)
+  var diam = 50+ sin(theta) * 10 ;
+  image(sydan,0,0, diam, diam ); 
+  theta += .09 ;  
+
+  //Tähän vielä . sydän feidaus pois häipyy pois tms 
+
+  textAlign(CENTER, CENTER);
+  size = 150
+  textSize(size);
+  noStroke();
+  fill(35, 100, 50);
+  let graftext = `
+  Graffathon`;
+
+  text(graftext,0, -200)
+
+  size = 100
+  textSize(size);
+  noStroke();
+  fill(35, 100, 50);
+  text(`2024`,0, 200)
 }
 
 function glitchLineTransition(sceneTime) {
