@@ -5,15 +5,17 @@ function draw() {
     const demoTime = getTime() * bpm / 60
 
     textFont('Press Start 2P')
-    //colorMode(HSL) // Hue (0..360), Saturation (0..100), Lightness (0..100)
-    scrollBg(demoTime)
-
-
+    
+    if (isBgScroll || demoTime > 30) {
+      scrollBg(demoTime)
+    }
+    console.log(demoTime);
     if (demoTime < 12) {
       title(demoTime)
     }  else if (demoTime < 28) {
       intros(demoTime-12)
     } else if (demoTime < 30) {
+      isBgScroll = true;
       poikaAppears(demoTime, 2.5)
     } else if (demoTime < 35) {
       poikaAppears(demoTime, 8.5)
@@ -23,7 +25,7 @@ function draw() {
       coupleMeets(demoTime, 8.5)
     } else if (demoTime < 53) {
       loveTimeYay(demoTime < -10)
-    } else if (demoTime < 65) {
+    } else if (demoTime < 59) {
       loveTimeYay2(demoTime)
     } else if (demoTime < 75) {
       particlator()
@@ -57,7 +59,9 @@ function scrollBg(sceneTime){
   function title(sceneTime) {
     background(img);
     textAlign(CENTER, CENTER);
-    image(sydan, width / 2, height / 2, sydan.width *0.2, sydan.height *0.2);
+    var diam = 50+ sin(theta) * 10 ;
+    image(sydan,width / 2, height / 2, diam, diam ); 
+    theta += .09 ;  
     size = 64
     textSize(size);
     fill(35, 100, 50);
@@ -154,7 +158,7 @@ textSize(size);
 noStroke();
 fill(189, 41, 45);    //fill(189, 41, 45);  vihreä
 
-text(`Viddu nyt lähti bileet!`,width/-900, height/2-150)
+text(`Ny lähti bileet!`,width/-900, height/2-150)
 
 }
 
@@ -248,3 +252,4 @@ function particlator() {
       particles[i].joinParticles(particles.slice(i));
     }
   }
+
