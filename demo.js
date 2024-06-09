@@ -6,6 +6,8 @@ function draw() {
 
     textFont('Press Start 2P')
     
+    console.log(demoTime);
+
     if (isBgScroll || demoTime > 30) {
       scrollBg(demoTime)
     }
@@ -24,7 +26,7 @@ function draw() {
       coupleMeets(demoTime, 8.5)
     } else if (demoTime < 53) {
       loveTimeYay(demoTime < -10)
-    } else if (demoTime < 59) {
+    } else if (demoTime < 56) {
       loveTimeYay2(demoTime)
     } else if (demoTime < 63) {
       particlator()
@@ -39,7 +41,7 @@ function draw() {
     } else if (demoTime < 72) {
       verticalTextScroll()
     } else if (demoTime < 80) {
-      blobs()
+      blobs(demoTime)
     } else if (demoTime < 88) {
       theEnd(demoTime)
     } else if (demoTime < 94) {
@@ -298,7 +300,9 @@ function animalRain() {
 }
 
 function blobs(sceneTime) {
-  if ( Math.floor(sceneTime * 16) % 4 === 0 || !oldBlobs ) {
+  if ( Math.floor(sceneTime * 16) % 16 === 0 
+  || Math.floor(sceneTime * 16) % 24 === 0
+  || !oldBlobs ) {
     oldBlobs = initOldBlobs()
   }
   oldBlobs.forEach((blob) => {
@@ -314,7 +318,7 @@ function initOldBlobs() {
       x: Math.floor(Math.random() * width),
       y: Math.floor(Math.random() * height),
       d: d,
-      s: (30 + Math.random() * 130) * Math.exp(-sq(d / 200)),
+      s: (40 + Math.random() * 179) * Math.exp(-sq(d / 200)),
     })
   }
   return result
