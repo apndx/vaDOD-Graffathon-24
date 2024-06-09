@@ -23,28 +23,21 @@ function draw() {
       coupleMeets(demoTime, 8.5)
     } else if (demoTime < 53) {
       loveTimeYay(demoTime < -10)
-    } else if (demoTime < 80) {
+    } else if (demoTime < 65) {
       loveTimeYay2(demoTime)
-    } else if (demoTime < 90) {
-      theEnd(demoTime)
+    } else if (demoTime < 75) {
+      particlator(demoTime - 65)
     } else if (demoTime < 100) {
+      theEnd(demoTime)
+    } else if (demoTime < 110) {
       theEndPulse(demoTime)
-    } else {
+    }
+    else {
         endDemo()
-
     }
 }
 
 
-
-function instructionsScene(sceneTime) {
-    background(35, 100, 50, 100) // orange
-    textAlign(CENTER, CENTER)
-    textSize(34)
-    fill(0, 0, 0) // black
-    noStroke()
-    text('Press F to go fullscreen and space to start', width/2, height/2)
-}
 
 function scrollBg(sceneTime){ 
     image(img, 0, bgY1, width, height);
@@ -234,3 +227,24 @@ function glitchLineTransition(sceneTime) {
   }
   
 }
+
+function particlator(sceneTime) {
+  //background(img);
+  // an array to add multiple particles
+  push();
+  translate(width/2, height/2)
+  image(tytto, -tytto.width*2, tyttoY, 310, 433)
+  image(poika, poika.width, poikaY, 310, 433)
+  pop();
+  let particles = [];
+  
+    for(let i = 0;i<width/1000;i++){
+      particles.push(new Particle());
+    }
+  
+    for(let i = 0;i<particles.length;i++) {
+      particles[i].createParticle();
+      particles[i].moveParticle();
+      particles[i].joinParticles(particles.slice(i));
+    }
+  }
