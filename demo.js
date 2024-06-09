@@ -246,22 +246,26 @@ function glitchLineTransition(sceneTime) {
     glitchY = height;
   }
   stroke(255);
-  strokeWeight(4)
+  strokeWeight(8)
   line(0, glitchY, width, glitchY);
   
   const time = Math.floor(sceneTime * 60)
   if (time % 4 === 0) {
-    stroke(155);
-    strokeWeight(2)
-    let line2y = Math.random() * glitchY
-    line(0, line2y, width, line2y); 
+    for (let i=0; i<5; i++) {
+      stroke(Math.random() * 255, Math.random() * 255, Math.random() * 255);
+      strokeWeight(Math.random() * 14)
+      let line2y = Math.random() * glitchY
+      line(0, line2y, width, line2y); 
+    }
   }
 
   if (Math.floor(sceneTime * 60) % 3 === 0) {
-    stroke(155);
-    strokeWeight(2)
-    let line3y = glitchY / Math.random()
-    line(0, line3y, width, line3y); 
+    for (let i=0; i<5; i++) {
+      stroke(Math.random() * 255, Math.random() * 255, Math.random() * 255);
+      strokeWeight(Math.random() * 14)
+      let line3y = glitchY / Math.random()
+      line(0, line3y, width, line3y); 
+    }
   }
   
 }
