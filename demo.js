@@ -36,11 +36,11 @@ function draw() {
           sprinkleAnimals(kissa, cats)
       }
       animalRain()
-    } else if (demoTime < 72) {
-      blobs()
     } else if (demoTime < 75) {
-      theEnd(demoTime)
+      blobs()
     } else if (demoTime < 78) {
+      theEnd(demoTime)
+    } else if (demoTime < 81) {
       theEndPulse(demoTime)
     }
     else {
@@ -290,6 +290,9 @@ function animalRain() {
   for (let i = 0; i < dogs.length; i++) {
     dogs[i].moveCreature();
   }
+  var diam = 50+ sin(theta) * 10 ;
+  image(sydan,width / 2, height / 2, diam, diam );
+  theta += .09 ;
 }
 
 function blobs(sceneTime) {
