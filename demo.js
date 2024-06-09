@@ -266,11 +266,8 @@ function particlator() {
 
   function sprinkleAnimals(img, creatures) {
     for(let i = 0; i < 10; i++) {
-        const x = random(width);
-        const y = random(height);
-        const size = random(50, 200);
-        const angle = random(TWO_PI);
-        creatures.push({img, x, y, size, angle});
+        const creature = new Creature(img);
+        creatures.push(creature);
     }
   }
 
