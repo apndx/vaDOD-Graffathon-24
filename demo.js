@@ -44,9 +44,9 @@ function draw() {
       blobs(demoTime)
     } else if (demoTime < 88) {
       glitchLineTransition(demoTime)
-    } else if (demoTime < 91) {
-      theEnd(demoTime)
     } else if (demoTime < 96) {
+      theEnd(demoTime)
+    } else if (demoTime < 104) {
       theEndPulse(demoTime)
     } else if (demoTime < 110) {
       theEndHeart(demoTime)
