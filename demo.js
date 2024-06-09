@@ -37,6 +37,8 @@ function draw() {
       }
       animalRain()
     } else if (demoTime < 72) {
+      verticalTextScroll()
+    } else if (demoTime < 78) {
       blobs()
     } else if (demoTime < 75) {
       theEnd(demoTime)
@@ -320,4 +322,21 @@ function drawBlob(blob) {
   stroke(200+blob.s, 128, blob.s/3)
   fill(255-blob.s, 128, blob.s*3)
   circle(blob.x, blob.y, blob.s);
+}
+
+function verticalTextScroll(sceneTime) {
+let content = ' (*_*)    BILEET!! PARTY!!     (^-^)  ';
+  textAlign(CENTER, CENTER);
+  textSize(40);
+  var diam = 50+ sin(theta) * 50 ;
+  tint(150,150); 
+   image(sydan,width / 2-200, height / 2-200, diam+400, diam+400 ); 
+  theta += .2 
+  for (let y = yStart; y < height; y += 100) { //use a for loop to draw the line of text multiple times down the vertical axis
+    fill(189, y / 4 + 41, 45); //create a gradient by associating the fill color with the y location of the text
+    text(content, width / 2, y);
+  
+  }
+  yStart=yStart-2;
+noTint(); 
 }
