@@ -48,8 +48,9 @@ function draw() {
       theEnd(demoTime)
     } else if (demoTime < 96) {
       theEndPulse(demoTime)
-    }
-    else {
+    } else if (demoTime < 110) {
+      theEndHeart(demoTime)
+    } else {
         endDemo()
     }
 }
@@ -195,12 +196,12 @@ function theEnd(sceneTime) {
 }
 
 function theEndPulse(sceneTime) {
+
   translate(width/2, height/2)
-  var diam = 50+ sin(theta) * 10 ;
+
+  var diam = initialDiam + sin(theta) * 10 ;
   image(sydan,0,0, diam, diam ); 
   theta += .09 ;  
-
-  //Tähän vielä . sydän feidaus pois häipyy pois tms 
 
   textAlign(CENTER, CENTER);
   size = 150
@@ -217,7 +218,26 @@ function theEndPulse(sceneTime) {
   noStroke();
   fill(35, 100, 50);
   text(`2024`,30, 200)
+
 }
+
+function theEndHeart(sceneTime) {
+
+    translate(width/2, height/2)
+
+    // Decrease the initialDiam value
+    if (sceneTime > 93 && initialDiam > 0) {
+      initialDiam = initialDiam - 1;
+    }
+
+    var diam = initialDiam + sin(theta) * 10 ;
+    if (initialDiam > 0) {
+        image(sydan,0,0, diam, diam );
+        theta += .09;
+    }
+
+  }
+
 
 function glitchLineTransition(sceneTime) {
   
