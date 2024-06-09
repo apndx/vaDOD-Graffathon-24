@@ -1,6 +1,4 @@
 audioPlayer = document.querySelector('#song')
-let dogs = [];
-let cats = [];
 
 function draw() {
     const bpm = 115
@@ -11,12 +9,11 @@ function draw() {
     if (isBgScroll || demoTime > 30) {
       scrollBg(demoTime)
     }
-    console.log(demoTime);
     if (demoTime < 12) {
       title(demoTime)
-    }  else if (demoTime < 27) {
+    }  else if (demoTime < 28) {
       intros(demoTime-12)
-    } else if (demoTime < 32) { 
+    } else if (demoTime < 30) {
       isBgScroll = true;
       poikaAppears(demoTime, 2.5)
     } else if (demoTime < 35) {
@@ -29,20 +26,21 @@ function draw() {
       loveTimeYay(demoTime < -10)
     } else if (demoTime < 59) {
       loveTimeYay2(demoTime)
-    } else if (demoTime < 75) {
+    } else if (demoTime < 63) {
       particlator()
-
-    } else if (demoTime < 78) {
-        if (dogs.length===0) {
-            sprinkleAnimals(koira, dogs)
-        }
-        if (cats.length===0 && demoTime > 76) {
-            sprinkleAnimals(kissa, cats)
-        }
-        animalRain()
-    } else if (demoTime < 100) {
+    } else if (demoTime < 68) {
+      if (dogs.length===0) {
+          sprinkleAnimals(koira, dogs)
+      }
+      if (cats.length===0 && demoTime > 66) {
+          sprinkleAnimals(kissa, cats)
+      }
+      animalRain()
+    } else if (demoTime < 72) {
+      blobs()
+    } else if (demoTime < 75) {
       theEnd(demoTime)
-    } else if (demoTime < 110) {
+    } else if (demoTime < 78) {
       theEndPulse(demoTime)
     }
     else {
@@ -203,7 +201,8 @@ function theEndPulse(sceneTime) {
   textSize(size);
   noStroke();
   fill(35, 100, 50);
-  let graftext = `Graffathon`;
+  let graftext = `
+  Graffathon`;
 
   text(graftext,0, -200)
 
@@ -258,32 +257,61 @@ function particlator() {
   
     for(let i = 0;i<particles.length;i++) {
       particles[i].createParticle();
-      particles[i].moveParticle();
+      // particles[i].moveParticle();
       particles[i].joinParticles(particles.slice(i));
-    }
   }
+}
 
-
-  function sprinkleAnimals(img, creatures) {
-    for(let i = 0; i < 10; i++) {
-        const creature = new Creature(img);
-        creatures.push(creature);
-    }
+function sprinkleAnimals(img, creatures) {
+  for(let i = 0; i < 10; i++) {
+      const creature = new Creature(img);
+      creatures.push(creature);
   }
+}
 
-  function animalRain() {
-    for(let dog of dogs) {
+function animalRain() {
+  for(let dog of dogs) {
+    push();
+    translate(dog.x, dog.y);
+    rotate(dog.angle);
+    image(dog.img, 0, 0, dog.size, dog.size);
+    pop();
+  }
+  for(let cat of cats) {
       push();
-      translate(dog.x, dog.y);
-      rotate(dog.angle);
-      image(dog.img, 0, 0, dog.size, dog.size);
+      translate(cat.x, cat.y);
+      rotate(cat.angle);
+      image(cat.img, 0, 0, cat.size, cat.size);
       pop();
-    }
-    for(let cat of cats) {
-        push();
-        translate(cat.x, cat.y);
-        rotate(cat.angle);
-        image(cat.img, 0, 0, cat.size, cat.size);
-        pop();
-    }
   }
+}
+
+function blobs(sceneTime) {
+  if ( Math.floor(sceneTime * 16) % 4 === 0 || !oldBlobs ) {
+    oldBlobs = initOldBlobs()
+  }
+  oldBlobs.forEach((blob) => {
+    drawBlob(blob)
+  })
+}
+
+function initOldBlobs() {
+  result = []
+  for (let i = 0; i < 18; i++) {
+    d = Math.floor(Math.random() * 25)
+    result.push({
+      x: Math.floor(Math.random() * width),
+      y: Math.floor(Math.random() * height),
+      d: d,
+      s: (30 + Math.random() * 130) * Math.exp(-sq(d / 200)),
+    })
+  }
+  return result
+}
+
+function drawBlob(blob) {  
+  translate(0, 0)
+  stroke(200+blob.s, 128, blob.s/3)
+  fill(255-blob.s, 128, blob.s*3)
+  circle(blob.x, blob.y, blob.s);
+}
