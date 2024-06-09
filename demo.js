@@ -1,4 +1,6 @@
 audioPlayer = document.querySelector('#song')
+let dogs = [];
+let cats = [];
 
 function draw() {
     const bpm = 115
@@ -30,9 +32,14 @@ function draw() {
     } else if (demoTime < 75) {
       particlator()
 
-    } else if (demoTime < 80) {
-        animalRain(koira)
-
+    } else if (demoTime < 78) {
+        if (dogs.length===0) {
+            sprinkleAnimals(koira, dogs)
+        }
+        if (cats.length===0 && demoTime > 76) {
+            sprinkleAnimals(kissa, cats)
+        }
+        animalRain()
     } else if (demoTime < 100) {
       theEnd(demoTime)
     } else if (demoTime < 110) {
@@ -257,22 +264,29 @@ function particlator() {
   }
 
 
-function animalRain(img) {
-
-  for(let i = 0; i < 10; i++) {
-    sprinkleAnimals(img);
+  function sprinkleAnimals(img, creatures) {
+    for(let i = 0; i < 10; i++) {
+        const x = random(width);
+        const y = random(height);
+        const size = random(50, 200);
+        const angle = random(TWO_PI);
+        creatures.push({img, x, y, size, angle});
+    }
   }
 
-}
-
-function sprinkleAnimals(img) {
-    push();
-    const x = random(width);
-    const y = random(height);
-    const size = random(50, 200);
-    const angle = random(TWO_PI);
-    translate(x, y);
-    rotate(angle);
-    image(img, 0, 0, size, size);
-    pop();
+  function animalRain() {
+    for(let dog of dogs) {
+      push();
+      translate(dog.x, dog.y);
+      rotate(dog.angle);
+      image(dog.img, 0, 0, dog.size, dog.size);
+      pop();
+    }
+    for(let cat of cats) {
+        push();
+        translate(cat.x, cat.y);
+        rotate(cat.angle);
+        image(cat.img, 0, 0, cat.size, cat.size);
+        pop();
+    }
   }
