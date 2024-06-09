@@ -30,7 +30,7 @@ function draw() {
     } else if (demoTime < 53) {
      loveTimeYay(demoTime < -10)
     } else if (demoTime < 80) {
-      loveTimeYay2(demoTime)
+      verticalTextScroll()
     } else if (demoTime < 90) {
       theEnd(demoTime)
     } else if (demoTime < 100) {
@@ -242,6 +242,68 @@ fill(189, 41, 45);    //fill(189, 41, 45);  vihreä
 text(`Viddu nyt lähti bileet!`,width/-900, height/2-150)
 
 }
+
+
+function verticalTextScroll(sceneTime) {
+  //translate(width/2, height/2)
+  // background(img)
+  //var diam = 50 + sin(theta) * 20 ;
+ // image(sydan,0,0, diam, diam ); 
+ // theta += .09 ;  // theta to change the speed
+  // var diam = 50+ sin(theta) * 10 ;
+  // image(sydan,0,0, diam, diam ); 
+  // //image(sydan,width / 2, height / 2, diam, diam ); 
+  // theta += .09 ;  
+
+//Tähän vielä . sydän feidaus pois häipyy pois tms 
+
+let content = ' (*_*)    BILEET!! PARTY!!     (^-^)  '; //variable for text string
+//' \(^-^)/ (*_*)  (@_@) PARTYING WITH FRIENDS  (^-^) (^o^)  (^~^)  '
+
+  textAlign(CENTER, CENTER);
+  textSize(40);
+  var diam = 50+ sin(theta) * 50 ;
+  tint(150,150); 
+   image(sydan,width / 2-200, height / 2-200, diam+400, diam+400 ); 
+  theta += .2 
+
+  for (let y = yStart; y < height; y += 100) { //use a for loop to draw the line of text multiple times down the vertical axis
+    fill(189, y / 4 + 41, 45); //create a gradient by associating the fill color with the y location of the text
+    text(content, width / 2, y);
+  
+  }
+  yStart=yStart-2;
+;  
+noTint(); 
+
+// textAlign(CENTER, CENTER);
+// size = 150
+// textSize(size);
+// noStroke();
+// fill(35, 100, 50);//fill(189, 41, 45); 
+// let graftext = `
+//  Graffathon`;
+
+// text(graftext,0, -200)
+
+// size = 100
+// textSize(size);
+// noStroke();
+// fill(35, 100, 50);//fill(189, 41, 45); 
+
+
+// text(`2024`,0, 200)
+
+}
+
+
+
+
+
+
+
+
+
 
 function theEnd(sceneTime) {
  // background(img)
