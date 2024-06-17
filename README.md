@@ -18,4 +18,4 @@ Graphics are made using p5.js and Illustrator, and [project template](https://gi
 [Virman Pileet](https://soundcloud.com/hajame/virman-pileet) by hajame
 
 
-<img src="https://github.com/apndx/vaDOD-Graffathon-24/tree/main/assets/gingers.png" width="1000">
+<img src="https://github.com/apndx/vaDOD-Graffathon-24/blob/main/assets/gingers.png" width="1000">
